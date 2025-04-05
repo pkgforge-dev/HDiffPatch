@@ -24,6 +24,7 @@
  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  OTHER DEALINGS IN THE SOFTWARE.
  */
+#include <sched.h>
 #include "parallel_import.h"
 #include <assert.h>
 
@@ -145,7 +146,7 @@ void this_thread_yield(){
 #       ifdef __ANDROID__
             sched_yield();
 #       else
-            pthread_yield();
+            sched_yield(); //https://github.com/sisong/hsynz/issues/33
 #       endif
 #   endif
 #endif
